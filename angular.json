@@ -12,7 +12,7 @@
         },
         "@schematics/angular:application": {
           "strict": true
-        },
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -28,7 +28,12 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/asset"
+              "src/asset",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/cryptocoins-icons/SVG/",
+                "output": "/asset/crypto-icon/"
+              }
             ],
             "styles": [
               "src/asset/style/global.styl"
@@ -39,8 +44,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/environment/environment.ts",
+                  "with": "src/environment/environment.prod.ts"
                 }
               ],
               "optimization": true,
