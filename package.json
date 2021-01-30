@@ -1,0 +1,30 @@
+{
+  "name": "cryptoverview",
+  "version": "1.0.0",
+  "description": "A crypto coin dashboard",
+  "main": "index.js",
+  "dependencies": {
+    "crypto-icons": "^1.0.65"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devtuned/cryptoverview.git"
+  },
+  "keywords": [
+    "crypto",
+    "coin",
+    "currency",
+    "dashboard",
+    "overview"
+  ],
+  "author": "devtuned",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devtuned/cryptoverview/issues"
+  },
+  "homepage": "https://github.com/devtuned/cryptoverview#readme"
+}
