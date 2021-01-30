@@ -1,0 +1,65 @@
+body,
+div {
+  display: flex;
+  margin: 0;
+
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 8px;
+}
+
+body {
+  background: #fafafa;
+  color: black;
+  font-family: 'Open Sans';
+}
+
+.dashboard {
+  /* TODO: make me a css-grid */
+  font-size: 2rem;
+  margin: 2rem;
+  border: 1px solid #00000010;
+  border-radius: 0.5em;
+}
+
+.crypto {
+  --margin: 2rem;
+  flex-direction: row;
+}
+
+.crypto-icon {
+  margin: var(--margin);
+  width: 4em;
+  height: 4em;
+  background-size: contain;
+
+  background-image: 'test/' + attr(data-imgsrc);
+  /* background-color: #00000010; */
+}
+
+/* .crypto-icon-btc {
+  background-image: url(../img/crypto-icons/btc.svg);
+} */
+
+.crypto-summary {
+  padding: var(--margin) var(--margin) var(--margin) 0;
+  font-size: 0.75em;
+}
+
+.definition {
+}
+
+.definition-title {
+  font-weight: bold;
+}
+.definition-title::after {
+  content: ':';
+}
+
+.definition-content {
+  padding-left: 0.5em;
+}
