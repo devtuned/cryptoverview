@@ -6,7 +6,9 @@
   "dependencies": {
     "crypto-icons": "^1.0.65"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

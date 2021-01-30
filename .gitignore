@@ -1,1 +1,6 @@
+# Application
+dist/
+
+# JS/TS
 node_modules
+*.tsbuildinfo
