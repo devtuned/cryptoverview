@@ -6,10 +6,16 @@
  */
 
 export interface Volatility {
-  buyFrequency: number // Hz
-  sellFrequency: number // Hz
-  buyStrength: number // TBD: how high they buy into the order book
-  sellStrength: number // TBD: how low(high?) they sell in the order book
+  /** Hz */
+  buyFrequency: number
+  /** Hz */
+  sellFrequency: number
+  /** volume as ratio to market cap */
+  buyStrength: number
+  /** volume as ratio to market cap */
+  sellStrength: number
+  /** sell to buy gap as ratio of price */
+  margin: number
 }
 
 export function mockVolatility(): Volatility {
@@ -18,5 +24,6 @@ export function mockVolatility(): Volatility {
     sellFrequency: Math.random() * 15,
     buyStrength: Math.random() * 3,
     sellStrength: Math.random() * 3,
+    margin: Math.random() / 33, // simulating up to 3%
   }
 }

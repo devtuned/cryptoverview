@@ -1,3 +1,6 @@
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Observable, Subscription, TeardownLogic } from 'rxjs'
+
 export function WarnMocked(
   target: any,
   propertyKey: string,
@@ -11,5 +14,32 @@ export function WarnMocked(
       warned = true
     }
     return method.apply(this, args)
+  }
+}
+
+@Component({ template: '' })
+export abstract class SelfCleaningComponent implements OnInit, OnDestroy {
+  protected subscriptions?: Subscription
+  protected componentIsInitialized: boolean | null = null
+
+  constructor() {}
+
+  protected subscribe<T>(
+    obs: Observable<T>,
+    handler: (value: T) => any | void
+  ): TeardownLogic {
+    this.subscriptions?.add(obs.subscribe(handler))
+  }
+
+  ngOnInit(): void {
+    if (this.componentIsInitialized !== null) {
+      this.subscriptions = new Subscription()
+    }
+    this.componentIsInitialized = true
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions?.unsubscribe()
+    this.componentIsInitialized = false
   }
 }
