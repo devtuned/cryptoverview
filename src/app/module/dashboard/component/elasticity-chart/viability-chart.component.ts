@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core'
-import { of } from 'rxjs'
+import { Component, Input, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
 import { Currency } from 'src/app/common/model/class/currency'
 import { Elasticity } from 'src/app/common/model/interface/elasticity'
 import { DataService } from 'src/app/common/service/data.service'
@@ -9,15 +9,13 @@ import { DataService } from 'src/app/common/service/data.service'
   templateUrl: './elasticity-chart.component.html',
   styleUrls: ['./elasticity-chart.component.styl'],
 })
-export class ElasticityChartComponent implements OnInit, OnChanges {
+export class ElasticityChartComponent implements OnInit {
   @Input() currency!: Currency
-  elasticity$ = of([] as Elasticity[])
+  elasticity$!: Observable<Elasticity[]>
 
   constructor(private readonly dataService: DataService) {}
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
     this.elasticity$ = this.dataService.elasticity(this.currency)
   }
-
-  ngOnInit(): void {}
 }

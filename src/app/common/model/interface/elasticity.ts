@@ -17,7 +17,13 @@
  *  elasticity is increasing or decreasing
  */
 
+import { randFraction } from '../../util/random'
+
 export interface Elasticity {
   positive: number // [0, 1]
   negative: number // [0, 1]
+}
+
+export function mockElasticity(): Elasticity {
+  return { positive: randFraction(), negative: randFraction() }
 }

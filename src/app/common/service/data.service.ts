@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { interval, Observable, of } from 'rxjs'
 import * as pipe from 'rxjs/operators'
 import { Currency } from '../model/class/currency'
-import { Elasticity } from '../model/interface/elasticity'
+import { Elasticity, mockElasticity } from '../model/interface/elasticity'
+import { mockVolatility, Volatility } from '../model/interface/volatility'
 import { WarnMocked } from '../util/dev'
-import { randFraction } from '../util/random'
+
+function mockNetworkDelay(): (...args: any[]) => any {
+  return pipe.delay(30 + Math.random() * 250)
+}
 
 @Injectable({
   providedIn: 'root',
@@ -20,14 +24,26 @@ export class DataService {
     ])
   }
 
+  // TODO: params for time ranges array?
   @WarnMocked
   elasticity(currency: Currency): Observable<Elasticity[]> {
-    return of([
-      { positive: randFraction(), negative: randFraction() },
-      { positive: randFraction(), negative: randFraction() },
-      { positive: randFraction(), negative: randFraction() },
-      { positive: randFraction(), negative: randFraction() },
-      { positive: randFraction(), negative: randFraction() },
-    ]).pipe(pipe.delay(300))
+    return interval(1000).pipe(
+      mockNetworkDelay(),
+      pipe.map(() => [
+        mockElasticity(),
+        mockElasticity(),
+        mockElasticity(),
+        mockElasticity(),
+        mockElasticity(),
+      ])
+    )
+  }
+
+  @WarnMocked
+  volatility(currency: Currency): Observable<Volatility> {
+    return interval(2000).pipe(
+      mockNetworkDelay(),
+      pipe.map(() => mockVolatility())
+    )
   }
 }
