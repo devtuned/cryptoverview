@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Currency } from 'src/app/common/model/class/currency'
+import { DataService } from 'src/app/common/service/data.service'
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -7,9 +7,9 @@ import { Currency } from 'src/app/common/model/class/currency'
   styleUrls: ['./overview.component.styl'],
 })
 export class DashboardOverviewComponent implements OnInit {
-  demoCurrency = new Currency('BTC')
+  constructor(private readonly dataService: DataService) {}
 
-  constructor() {}
+  currencies$ = this.dataService.currencies()
 
   ngOnInit(): void {}
 }

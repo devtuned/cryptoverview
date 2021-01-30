@@ -1,3 +1,11 @@
-<header>
-  <div class="symbol">{{ currency.symbol }}</div>
+<header class="passport">
+  <div class="logo-wrapper">
+    <img class="logo-icon" src="asset/crypto-icon/{{ currency.imgSrc }}" />
+  </div>
+  <div class="synopsis">
+    <div class="name" [title]="currency.name">
+      {{ currency.symbol }}
+    </div>
+    <app-elasticity-chart [currency]="currency"></app-elasticity-chart>
+  </div>
 </header>

@@ -1,1 +1,9 @@
-<app-currency-badge [currency]="demoCurrency"></app-currency-badge>
+<section>
+  <header>Top currencies</header>
+  <div class="currency-badges">
+    <app-currency-badge
+      *ngFor="let demoCurrency of currencies$ | async"
+      [currency]="demoCurrency"
+    ></app-currency-badge>
+  </div>
+</section>

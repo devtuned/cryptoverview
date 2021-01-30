@@ -1,0 +1,36 @@
+gap_h = 0.125em;
+gap_v = 0.125em;
+tick_height = 0.75em;
+tick_width = 0.25em;
+tick_radius_tip = tick_width;
+tick_radius_base = (tick_width / 1.5);
+
+:host {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: tick_height tick_height;
+  grid-auto-columns: tick_width;
+  grid-gap: gap_v gap_h;
+}
+
+.tick {
+  display: grid;
+  grid-gap: gap_v;
+
+  &-up {
+    align-self: flex-end;
+    background-image: linear-gradient(hsl(120deg 50% 50%), #00ff0040);
+    border-top-left-radius: tick_radius_tip;
+    border-top-right-radius: tick_radius_tip;
+    border-bottom-left-radius: tick_radius_base;
+    border-bottom-right-radius: tick_radius_base;
+  }
+
+  &-down {
+    background-image: linear-gradient(#ff000040, hsl(0deg 50% 50%));
+    border-top-left-radius: tick_radius_base;
+    border-top-right-radius: tick_radius_base;
+    border-bottom-left-radius: tick_radius_tip;
+    border-bottom-right-radius: tick_radius_tip;
+  }
+}

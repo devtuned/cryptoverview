@@ -1,0 +1,11 @@
+<!-- TODO: support loading animation PER TICK -->
+
+<ng-container *ngIf="elasticity$">
+  <ng-container *ngFor="let tick of elasticity$ | async" class="tick">
+    <div class="tick-up" [style]="{ height: tick.positive * 100 + '%' }"></div>
+    <div
+      class="tick-down"
+      [style]="{ height: tick.negative * 100 + '%' }"
+    ></div>
+  </ng-container>
+</ng-container>
