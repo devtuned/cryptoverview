@@ -1,5 +1,5 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  // To learn more about this file see: https://angular.io/config/tsconfig.
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -12,6 +12,11 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
