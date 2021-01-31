@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { Currency } from 'src/app/common/model/class/currency'
 
 @Component({
@@ -9,7 +9,12 @@ import { Currency } from 'src/app/common/model/class/currency'
 export class CurrencyBadgeComponent implements OnInit {
   @Input() currency!: Currency
 
+  @ViewChild('logo', { static: true })
+  logo!: ElementRef<HTMLDivElement>
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.logo.nativeElement.style.backgroundImage = `url(asset/crypto-icon/${this.currency.imgSrc})`
+  }
 }

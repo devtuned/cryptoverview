@@ -1,5 +1,6 @@
 radius = 0.25em;
 swing_area = 5em;
+swing_range = 4.5em;
 diameter = 2 * radius;
 
 :host {
@@ -11,11 +12,44 @@ diameter = 2 * radius;
   height: diameter;
   border-radius: radius;
   background-color: blue;
+  padding: 0 radius;
+}
+
+.swing-area {
+  // This way we can use 0 and 100%
+  position: relative;
+  height: diameter;
 }
 
 .pendulum {
+  margin-left: - radius;
+  position: absolute;
   width: diameter;
   height: diameter;
   border-radius: 50%;
   background-color: red;
+  --pos-a: 0%;
+  --pos-b: 100%;
+  --order-period: 1s;
+  animation: 1s linear infinite alternate swing, var(--order-period) linear infinite alternate flip;
+}
+
+@keyframes swing {
+  from {
+    left: var(--pos-a);
+  }
+
+  to {
+    left: var(--pos-b);
+  }
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
 }

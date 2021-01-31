@@ -13,18 +13,6 @@ import { SelfCleaningComponent } from 'src/app/common/util/dev'
 export class VolatilityPendulumComponent
   extends SelfCleaningComponent
   implements OnInit {
-  animationState = {
-    x: 0, // position (CSS: left)
-    a: 0, // acceleration (CSS: transition)
-    ω: 0, // spinfrequency (CSS: animation duration)
-  }
-  animationConfig = {
-    buySaturation: 0.5,
-    sellSaturation: 0.5,
-    buyLimit: 0,
-    sellLimit: 0,
-  }
-
   @Input() currency!: Currency
 
   @ViewChild('pendulum', { static: true })
@@ -49,21 +37,17 @@ export class VolatilityPendulumComponent
       (volatility.buyStrength + volatility.sellStrength)
     const relSellStrength = 1 - relBuyStrength
     const relMargin = 1 / Math.abs(Math.log10(volatility.margin))
-    this.animationConfig = {
-      ...this.animationConfig,
-      buyLimit: 0.5 + relMargin * relBuyStrength, // too low
-      sellLimit: 0.5 - relMargin * relBuyStrength, // num too small
-      buySaturation: volatility.buyStrength, // TODO
-      sellSaturation: volatility.sellStrength, // TODO
-    }
-  }
 
-  animate(): void {
-    if (!this.componentIsInitialized) {
-      return
-    }
+    const buyLimit = 0.5 + relMargin * relBuyStrength // too low
+    const sellLimit = 0.5 - relMargin * relBuyStrength // num too small
+    const buySaturation = volatility.buyStrength // TODO
+    const sellSaturation = volatility.sellStrength // TODO
+    const orderPeriod =
+      1 / volatility.buyFrequency + 1 / volatility.sellFrequency
 
     const el = this.pendulumRef.nativeElement
-    // TODO: create CSS keyframe rules
+    el.style.setProperty('--pos-a', `${sellLimit * 100}%`)
+    el.style.setProperty('--pos-b', `${buyLimit * 100}%`)
+    el.style.setProperty('--spin-period', `${orderPeriod}s`)
   }
 }

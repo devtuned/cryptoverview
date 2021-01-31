@@ -21,6 +21,12 @@ export class DataService {
       new Currency('BTC', 'Bitcoin'),
       new Currency('LTC', 'Litecoin'),
       new Currency('ETH', 'Ethereum'),
+      new Currency('BTC', 'Bitcoin'),
+      new Currency('LTC', 'Litecoin'),
+      new Currency('ETH', 'Ethereum'),
+      new Currency('BTC', 'Bitcoin'),
+      new Currency('LTC', 'Litecoin'),
+      new Currency('ETH', 'Ethereum'),
     ])
   }
 

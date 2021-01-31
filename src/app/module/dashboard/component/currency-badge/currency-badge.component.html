@@ -1,7 +1,5 @@
 <header class="passport">
-  <div class="logo-wrapper">
-    <img class="logo-icon" src="asset/crypto-icon/{{ currency.imgSrc }}" />
-  </div>
+  <div #logo class="logo"></div>
   <div class="synopsis">
     <div class="name" [title]="currency.name">
       {{ currency.symbol }}
@@ -9,4 +7,5 @@
     <app-elasticity-chart [currency]="currency"></app-elasticity-chart>
     <app-volatility-pendulum [currency]="currency"></app-volatility-pendulum>
   </div>
+  <div class="arrow arrow-up"></div>
 </header>

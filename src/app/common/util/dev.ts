@@ -19,7 +19,7 @@ export function WarnMocked(
 
 @Component({ template: '' })
 export abstract class SelfCleaningComponent implements OnInit, OnDestroy {
-  protected subscriptions?: Subscription
+  protected subscriptions = new Subscription()
   protected componentIsInitialized: boolean | null = null
 
   constructor() {}
@@ -28,7 +28,7 @@ export abstract class SelfCleaningComponent implements OnInit, OnDestroy {
     obs: Observable<T>,
     handler: (value: T) => any | void
   ): TeardownLogic {
-    this.subscriptions?.add(obs.subscribe(handler))
+    this.subscriptions.add(obs.subscribe(handler))
   }
 
   ngOnInit(): void {
